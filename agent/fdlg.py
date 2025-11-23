@@ -61,6 +61,7 @@ class FDLGInitData(CustomAction):
                 "战斗：【循环】": {"on_error": [f"{prefix}：【循环】进入地图"]},
                 # 循环移动
                 "点击自动移动": {"next": [f"{prefix}：【循环】移动中"]},
+                "点击自动移动（识图）": {"next": [f"{prefix}：【循环】移动中"]},
                 "战斗：回到行走画面": {"next": [f"{prefix}：【循环】移动中"]},
             }
         )

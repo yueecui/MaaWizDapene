@@ -68,6 +68,20 @@
         "post_delay": 200,
         "action": "Click"
     },
+    "点击自动移动（识图）": {
+        "recognition": "TemplateMatch",
+        "template": "common\\自动移动图标.png",
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "threshold": 0.9,
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click"
+    },
     "点击继续移动键": {
         "recognition": "TemplateMatch",
         "template": "common\\继续移动键.png",
