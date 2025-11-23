@@ -62,6 +62,7 @@ class FDLGInitData(CustomAction):
                 # 循环移动
                 "点击自动移动": {"next": [f"{prefix}：【循环】移动中"]},
                 "点击自动移动（识图）": {"next": [f"{prefix}：【循环】移动中"]},
+                "无法找到路线": {"next": [f"{prefix}：执行入口"]},
                 "战斗：回到行走画面": {"next": [f"{prefix}：【循环】移动中"]},
             }
         )

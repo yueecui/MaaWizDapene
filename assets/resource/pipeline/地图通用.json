@@ -95,6 +95,29 @@
         "custom_action": "continue_move",
         "post_delay": 1000
     },
+    "无法找到路线": {
+        "recognition": "OCR",
+        "expected": [
+            "找到前往",
+            "目的地"
+        ],
+        "roi": [
+            36,
+            487,
+            609,
+            363
+        ],
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000
+    },
     "点击离开迷宫键": {
         "recognition": "TemplateMatch",
         "template": "common\\离开迷宫键.png",
