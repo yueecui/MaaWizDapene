@@ -11,7 +11,12 @@
     },
     "测试2": {
         "recognition": "DirectHit",
-        "custom_recognition": "my_reco_333",
+        "action": "Custom",
+        "custom_action": "my_action_111"
+    },
+    "MyTask4": {
+        "recognition": "Custom",
+        "custom_recognition": "my_reco_222",
         "action": "Custom",
         "custom_action": "my_action_111"
     }

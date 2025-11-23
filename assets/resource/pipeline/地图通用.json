@@ -1,7 +1,7 @@
 {
     "对话黄箭头": {
         "recognition": "TemplateMatch",
-        "template": "common\\对话黄箭头.png",
+        "template": "common/对话黄箭头.png",
         "roi": [
             620,
             1148,
@@ -13,7 +13,7 @@
     },
     "中部黄箭头": {
         "recognition": "TemplateMatch",
-        "template": "common\\中部黄箭头.png",
+        "template": "common/中部黄箭头.png",
         "roi": [
             657,
             793,
@@ -35,7 +35,7 @@
     },
     "打开地图": {
         "recognition": "TemplateMatch",
-        "template": "common\\离开迷宫键.png",
+        "template": "common/离开迷宫键.png",
         "roi": [
             642,
             202,
@@ -70,7 +70,7 @@
     },
     "点击自动移动（识图）": {
         "recognition": "TemplateMatch",
-        "template": "common\\自动移动图标.png",
+        "template": "common/自动移动图标.png",
         "roi": [
             0,
             144,
@@ -84,7 +84,7 @@
     },
     "点击继续移动键": {
         "recognition": "TemplateMatch",
-        "template": "common\\继续移动键.png",
+        "template": "common/继续移动键.png",
         "roi": [
             584,
             204,
@@ -120,7 +120,7 @@
     },
     "点击离开迷宫键": {
         "recognition": "TemplateMatch",
-        "template": "common\\离开迷宫键.png",
+        "template": "common/离开迷宫键.png",
         "roi": [
             642,
             202,
@@ -132,7 +132,7 @@
     },
     "移除地图左箭头": {
         "recognition": "TemplateMatch",
-        "template": "common\\地图左箭头.png",
+        "template": "common/地图左箭头.png",
         "roi": [
             9,
             589,
@@ -155,7 +155,7 @@
     },
     "移除地图右箭头": {
         "recognition": "TemplateMatch",
-        "template": "common\\地图右箭头.png",
+        "template": "common/地图右箭头.png",
         "roi": [
             696,
             591,
@@ -188,7 +188,7 @@
     },
     "背包补充：打开": {
         "recognition": "TemplateMatch",
-        "template": "common\\图标背包补充.png",
+        "template": "common/图标背包补充.png",
         "roi": [
             376,
             919,

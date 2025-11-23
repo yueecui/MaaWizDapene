@@ -79,7 +79,7 @@
     },
     "战斗：回到行走画面": {
         "recognition": "TemplateMatch",
-        "template": "common\\离开迷宫键.png",
+        "template": "common/离开迷宫键.png",
         "roi": [
             642,
             202,

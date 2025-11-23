@@ -95,7 +95,7 @@
     },
     "抽卡：逆转右手图片": {
         "recognition": "TemplateMatch",
-        "template": "common\\逆转右手.png",
+        "template": "common/逆转右手.png",
         "roi": [
             308,
             711,

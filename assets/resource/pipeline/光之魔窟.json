@@ -158,7 +158,7 @@
     },
     "光之魔窟：A点检测": {
         "recognition": "TemplateMatch",
-        "template": "light_cave\\A点检测.png",
+        "template": "light_cave/A点检测.png",
         "roi": [
             566,
             62,
@@ -179,7 +179,7 @@
     },
     "光之魔窟：B点检测": {
         "recognition": "TemplateMatch",
-        "template": "light_cave\\B点检测.png",
+        "template": "light_cave/B点检测.png",
         "roi": [
             567,
             63,

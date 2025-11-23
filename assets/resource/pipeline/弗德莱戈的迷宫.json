@@ -162,7 +162,7 @@
     },
     "弗德莱戈：B2F检测": {
         "recognition": "TemplateMatch",
-        "template": "fdlg\\B2F检测.png",
+        "template": "fdlg/B2F检测.png",
         "roi": [
             598,
             76,
@@ -177,7 +177,7 @@
     },
     "弗德莱戈：B3F检测": {
         "recognition": "TemplateMatch",
-        "template": "fdlg\\B3F检测.png",
+        "template": "fdlg/B3F检测.png",
         "roi": [
             575,
             98,

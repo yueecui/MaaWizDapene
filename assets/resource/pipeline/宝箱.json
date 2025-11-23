@@ -81,7 +81,7 @@
     },
     "宝箱：重新打开地图": {
         "recognition": "TemplateMatch",
-        "template": "common\\继续移动键.png",
+        "template": "common/继续移动键.png",
         "roi": [
             584,
             204,
