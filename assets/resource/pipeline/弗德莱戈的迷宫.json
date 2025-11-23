@@ -199,6 +199,22 @@
             "背包补充：打开"
         ]
     },
+    "弗德莱戈：背包补充完毕": {
+        "recognition": "OCR",
+        "expected": [
+            "入口",
+            "人口"
+        ],
+        "roi": [
+            578,
+            611,
+            85,
+            44
+        ],
+        "next": [
+            "弗德莱戈：执行入口"
+        ]
+    },
     "弗德莱戈：重选目标": {
         "recognition": "Custom",
         "custom_recognition": "fdlg_need_reset_target",

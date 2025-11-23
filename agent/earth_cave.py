@@ -7,15 +7,13 @@ import json
 
 
 TARGET_MAP = {
-    1: {"x": 540, "y": 615},
-    2: {"x": 590, "y": 590},
-    3: {"roi": [425, 424, 295, 334]},
+    1: {"x": 615, "y": 820},
 }
 
 
 # 初始化
-@AgentServer.custom_action("light_cave_init_data")
-class LightCaveInitData(CustomAction):
+@AgentServer.custom_action("earth_cave_init_data")
+class EarthCaveInitData(CustomAction):
     data = GlobalDataStore.get_instance()
 
     def run(
@@ -27,7 +25,7 @@ class LightCaveInitData(CustomAction):
         self.data.index = 1
         self.data.count += 1
 
-        prefix = "光之魔窟"
+        prefix = "土之魔窟"
 
         context.override_pipeline(
             {
@@ -37,7 +35,7 @@ class LightCaveInitData(CustomAction):
                 "重启游戏：等待启动画面": {"next": [f"{prefix}：执行入口（重启版）"]},
                 # 循环进入地图
                 "打开地图": {"next": [f"{prefix}：【循环】进入地图"]},
-                "宝箱：重新打开地图": {"next": [f"{prefix}：【循环】进入地图"]},
+                "宝箱：重新打开地图": {"next": [f"{prefix}：【循环】寻找目标"]},
                 "战斗：【循环】": {"on_error": [f"{prefix}：【循环】进入地图"]},
                 # 循环移动
                 "点击自动移动": {"next": [f"{prefix}：【循环】移动中"]},
@@ -50,8 +48,8 @@ class LightCaveInitData(CustomAction):
 
 # 点击继续行走到达一定次数后，重新选择目标
 # 用于防卡死，比如和宝箱重叠时遇敌，遇敌后没有掉箱子，就会原地卡住
-@AgentServer.custom_recognition("light_cave_need_reset_target")
-class LightCaveNeedResetTarget(CustomRecognition):
+@AgentServer.custom_recognition("earth_cave_need_reset_target")
+class EarthCaveNeedResetTarget(CustomRecognition):
     def analyze(
         self,
         context: Context,
@@ -59,15 +57,15 @@ class LightCaveNeedResetTarget(CustomRecognition):
     ) -> CustomRecognition.AnalyzeResult:
         store = GlobalDataStore.get_instance()
         if store.continue_move_count >= 10:
-            print("LightCaveNeedResetTarget: 超过预设次数，重新选择目标")
+            print("EarthCaveNeedResetTarget: 超过预设次数，重新选择目标")
             return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
         else:
             return CustomRecognition.AnalyzeResult(box=None, detail="")
 
 
 # 是否已经达到要离开迷宫的条件
-@AgentServer.custom_recognition("light_cave_need_escape_dungeon")
-class LightCaveNeedEscapeDungeon(CustomRecognition):
+@AgentServer.custom_recognition("earth_cave_need_escape_dungeon")
+class EarthCaveNeedEscapeDungeon(CustomRecognition):
     def analyze(
         self,
         context: Context,
@@ -81,9 +79,26 @@ class LightCaveNeedEscapeDungeon(CustomRecognition):
             return CustomRecognition.AnalyzeResult(box=None, detail="")
 
 
+# 判断是否需要背包补充
+@AgentServer.custom_recognition("earth_cave_need_bag_supplement")
+class EarthCaveNeedBagSupplement(CustomRecognition):
+    def analyze(
+        self,
+        context: Context,
+        argv: CustomRecognition.AnalyzeArg,
+    ) -> CustomRecognition.AnalyzeResult:
+        store = GlobalDataStore.get_instance()
+        if (store.count - 1) > 0 and (store.count - 1) % 10 == 0:
+            context.override_next(argv.node_name, ["背包补充：打开"])
+            return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
+        else:
+            context.override_next(argv.node_name, ["土之魔窟：执行入口"])
+            return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
+
+
 # 根据楼层选择目标
-@AgentServer.custom_action("light_cave_choose_target")
-class LightCaveChooseTarget(CustomAction):
+@AgentServer.custom_action("earth_cave_choose_target")
+class EarthCaveChooseTarget(CustomAction):
     data = GlobalDataStore.get_instance()
 
     def run(
@@ -154,8 +169,8 @@ class LightCaveChooseTarget(CustomAction):
 
 
 # 增加index计数器
-@AgentServer.custom_action("light_cave_mod_index")
-class LightCaveModIndex(CustomAction):
+@AgentServer.custom_action("earth_cave_mod_index")
+class EarthCaveModIndex(CustomAction):
     data = GlobalDataStore.get_instance()
 
     def run(
@@ -166,5 +181,5 @@ class LightCaveModIndex(CustomAction):
         # 转str为字典
         custom_action_param = json.loads(argv.custom_action_param)
         self.data.index = custom_action_param["index"]
-        # print(f"LightCaveModIndex: 当前索引 {self.data.index}")
+        # print(f"EarthCaveModIndex: 当前索引 {self.data.index}")
         return True

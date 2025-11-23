@@ -52,7 +52,7 @@ class FDLGInitData(CustomAction):
         context.override_pipeline(
             {
                 # 执行入口
-                "背包补充：补充完毕": {"next": [f"{prefix}：执行入口"]},
+                "背包补充：等待循环": {"next": [f"{prefix}：背包补充完毕"]},
                 # 重启游戏
                 "重启游戏：等待启动画面": {"next": [f"{prefix}：执行入口（重启版）"]},
                 # 循环进入地图
