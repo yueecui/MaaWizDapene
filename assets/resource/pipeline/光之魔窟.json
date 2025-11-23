@@ -1,0 +1,276 @@
+{
+    "光之魔窟：执行入口": {
+        "action": "Custom",
+        "custom_action": "light_cave_init_data",
+        "next": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：【循环】进入地图": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "判断报错需要重启",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "打开地图",
+            "光之魔窟：地图已打开",
+            "光之魔窟：进入迷宫1",
+            "光之魔窟：进入迷宫2"
+        ],
+        "interrupt": [
+            "中部黄箭头",
+            "对话黄箭头"
+        ],
+        "on_error": [
+            "重启游戏：关闭游戏"
+        ]
+    },
+    "光之魔窟：执行入口（重启版）": {
+        "action": "Custom",
+        "custom_action": "light_cave_init_data",
+        "next": [
+            "光之魔窟：【循环】进入地图（重启版）"
+        ]
+    },
+    "光之魔窟：【循环】进入地图（重启版）": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "打开地图",
+            "光之魔窟：地图已打开",
+            "光之魔窟：进入迷宫1",
+            "光之魔窟：进入迷宫2"
+        ],
+        "interrupt": [
+            "中部黄箭头",
+            "对话黄箭头",
+            "随便点一下"
+        ]
+    },
+    "光之魔窟：进入迷宫1": {
+        "recognition": "OCR",
+        "expected": [
+            "光之魔窟"
+        ],
+        "roi": [
+            465,
+            468,
+            123,
+            41
+        ],
+        "action": "Click",
+        "next": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：进入迷宫2": {
+        "recognition": "OCR",
+        "expected": [
+            "光之魔窟"
+        ],
+        "roi": [
+            444,
+            684,
+            175,
+            41
+        ],
+        "action": "Click",
+        "next": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：地图已打开": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "recognition": "OCR",
+        "expected": "光之魔窟",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "next": [
+            "光之魔窟：【循环】寻找目标"
+        ]
+    },
+    "光之魔窟：【循环】寻找目标": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "点击自动移动",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "光之魔窟：判断离开迷宫",
+            "光之魔窟：选择移动目标"
+        ],
+        "on_error": [
+            "光之魔窟：执行入口"
+        ]
+    },
+    "光之魔窟：选择移动目标": {
+        "recognition": "OCR",
+        "expected": [
+            "自动移动"
+        ],
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "action": "Custom",
+        "custom_action": "light_cave_choose_target",
+        "next": [
+            "光之魔窟：【循环】寻找目标"
+        ]
+    },
+    "光之魔窟：【循环】移动中": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "光之魔窟：A点检测",
+            "光之魔窟：B点检测",
+            "光之魔窟：判断离开迷宫",
+            "光之魔窟：重选目标"
+        ],
+        "interrupt": [
+            "点击继续移动键"
+        ],
+        "on_error": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：A点检测": {
+        "recognition": "TemplateMatch",
+        "template": "light_cave\\A点检测.png",
+        "roi": [
+            566,
+            62,
+            89,
+            94
+        ],
+        "threshold": 0.90,
+        "pre_delay": 0,
+        "post_delay": 100,
+        "action": "Custom",
+        "custom_action": "light_cave_mod_index",
+        "custom_action_param": {
+            "index": 2
+        },
+        "next": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：B点检测": {
+        "recognition": "TemplateMatch",
+        "template": "light_cave\\B点检测.png",
+        "roi": [
+            567,
+            63,
+            96,
+            103
+        ],
+        "threshold": 0.90,
+        "pre_delay": 0,
+        "post_delay": 100,
+        "action": "Custom",
+        "custom_action": "light_cave_mod_index",
+        "custom_action_param": {
+            "index": 3
+        },
+        "next": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：重选目标": {
+        "recognition": "Custom",
+        "custom_recognition": "light_cave_need_reset_target",
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000,
+        "next": [
+            "光之魔窟：执行入口"
+        ]
+    },
+    "光之魔窟：判断离开迷宫": {
+        "recognition": "Custom",
+        "custom_recognition": "light_cave_need_escape_dungeon",
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "光之魔窟：【循环】离开迷宫"
+        ]
+    },
+    "光之魔窟：【循环】离开迷宫": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "光之魔窟：关闭地图",
+            "光之魔窟：判断已离开迷宫"
+        ],
+        "interrupt": [
+            "点击离开迷宫键"
+        ],
+        "on_error": [
+            "光之魔窟：【循环】进入地图"
+        ]
+    },
+    "光之魔窟：关闭地图": {
+        "recognition": "OCR",
+        "expected": "光之魔窟",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "action": "Key",
+        "key": 4,
+        "next": [
+            "光之魔窟：【循环】离开迷宫"
+        ]
+    },
+    "光之魔窟：判断已离开迷宫": {
+        "recognition": "OCR",
+        "expected": [
+            "光之魔窟"
+        ],
+        "roi": [
+            465,
+            468,
+            123,
+            41
+        ],
+        "action": "Click",
+        "next": [
+            "光之魔窟：执行入口"
+        ]
+    }
+}

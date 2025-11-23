@@ -23,7 +23,7 @@
     },
     "重启游戏：启动游戏": {
         "recognition": "TemplateMatch",
-        "template": "游戏APP图标.png",
+        "template": "common\\游戏APP图标.png",
         "action": "StartApp",
         "package": "jp.co.drecom.wizardry.daphne",
         "next": [

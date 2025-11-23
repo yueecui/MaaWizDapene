@@ -1,7 +1,7 @@
 {
     "对话黄箭头": {
         "recognition": "TemplateMatch",
-        "template": "对话黄箭头.png",
+        "template": "common\\对话黄箭头.png",
         "roi": [
             620,
             1148,
@@ -13,7 +13,7 @@
     },
     "中部黄箭头": {
         "recognition": "TemplateMatch",
-        "template": "中部黄箭头.png",
+        "template": "common\\中部黄箭头.png",
         "roi": [
             657,
             793,
@@ -33,6 +33,24 @@
             10
         ]
     },
+    "打开地图": {
+        "recognition": "TemplateMatch",
+        "template": "common\\离开迷宫键.png",
+        "roi": [
+            642,
+            202,
+            60,
+            49
+        ],
+        "pre_delay": 0,
+        "action": "Click",
+        "target": [
+            605,
+            80,
+            14,
+            17
+        ]
+    },
     "点击自动移动": {
         "recognition": "OCR",
         "expected": [
@@ -48,19 +66,9 @@
         "post_delay": 200,
         "action": "Click"
     },
-    "移动中": {
-        "pre_delay": 0,
-        "post_delay": 200,
-        "next": [
-            "宝箱：选择打开"
-        ],
-        "interrupt": [
-            "点击继续移动键"
-        ]
-    },
     "点击继续移动键": {
         "recognition": "TemplateMatch",
-        "template": "继续移动键.png",
+        "template": "common\\继续移动键.png",
         "roi": [
             584,
             204,
@@ -71,9 +79,21 @@
         "custom_action": "continue_move",
         "post_delay": 1000
     },
+    "点击离开迷宫键": {
+        "recognition": "TemplateMatch",
+        "template": "common\\离开迷宫键.png",
+        "roi": [
+            642,
+            202,
+            60,
+            49
+        ],
+        "action": "Click",
+        "post_delay": 1000
+    },
     "移除地图左箭头": {
         "recognition": "TemplateMatch",
-        "template": "地图左箭头.png",
+        "template": "common\\地图左箭头.png",
         "roi": [
             9,
             589,
@@ -96,7 +116,7 @@
     },
     "移除地图右箭头": {
         "recognition": "TemplateMatch",
-        "template": "地图右箭头.png",
+        "template": "common\\地图右箭头.png",
         "roi": [
             696,
             591,
@@ -119,7 +139,7 @@
     },
     "背包补充：打开": {
         "recognition": "TemplateMatch",
-        "template": "图标背包补充.png",
+        "template": "common\\图标背包补充.png",
         "roi": [
             376,
             919,
@@ -128,6 +148,7 @@
         ],
         "action": "Click",
         "next": [
+            "网络错误重试",
             "判断报错需要重启",
             "背包补充：点击补充"
         ]

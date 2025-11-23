@@ -39,7 +39,7 @@ class ChooseOpener(CustomAction):
                             "pre_delay": 0,
                             "post_delay": 0,
                             "recognition": "TemplateMatch",
-                            "template": "图标宝箱恐惧.png",
+                            "template": "common\\图标宝箱恐惧.png",
                             "roi": config["fear_roi"],
                         },
                     },

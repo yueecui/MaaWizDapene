@@ -1,9 +1,13 @@
 class GlobalDataStore:
     _instance = None
     continue_move_count = 0
+    count = 0
+    floar = 0
+    index = 0
 
     def __init__(self):
-        self.after_open_chest_entry = "弗德莱戈：打开地图"
+        self.floor = 0
+        self.index = 0
 
     @staticmethod
     def get_instance():

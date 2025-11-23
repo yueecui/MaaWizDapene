@@ -4,22 +4,6 @@ from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 from store import GlobalDataStore
 
-
-class FDLGDataStore:
-    _instance = None
-
-    def __init__(self):
-        GlobalDataStore.get_instance().after_open_chest_entry = "弗德莱戈：打开地图"
-        self.floor = 0
-        self.index = 0
-
-    @staticmethod
-    def get_instance():
-        if not FDLGDataStore._instance:
-            FDLGDataStore._instance = FDLGDataStore()
-        return FDLGDataStore._instance
-
-
 ROI_MAP = {
     1: {
         1: {"roi": [239, 476, 240, 471], "arrow": None},
@@ -52,8 +36,8 @@ ROI_MAP = {
 
 # 初始化
 @AgentServer.custom_action("fdlg_init_data")
-class FDLGChooseTarget(CustomAction):
-    data = FDLGDataStore.get_instance()
+class FDLGInitData(CustomAction):
+    data = GlobalDataStore.get_instance()
 
     def run(
         self,
@@ -62,23 +46,32 @@ class FDLGChooseTarget(CustomAction):
     ) -> bool:
         self.data.floor = 0
         self.data.index = 0
+
+        prefix = "弗德莱戈"
+
         context.override_pipeline(
             {
-                "背包补充：补充完毕": {"next": ["弗德莱戈：执行入口"]},
-                "宝箱：重新打开地图": {"next": ["弗德莱戈：【循环】进入地图"]},
-                "点击自动移动": {"next": ["弗德莱戈：【循环】移动中"]},
-                "战斗：回到行走画面": {"next": ["弗德莱戈：【循环】移动中"]},
-                "重启游戏：等待启动画面": {"next": ["弗德莱戈：执行入口（重启版）"]},
+                # 执行入口
+                "背包补充：补充完毕": {"next": [f"{prefix}：执行入口"]},
+                # 重启游戏
+                "重启游戏：等待启动画面": {"next": [f"{prefix}：执行入口（重启版）"]},
+                # 循环进入地图
+                "打开地图": {"next": [f"{prefix}：【循环】进入地图"]},
+                "宝箱：重新打开地图": {"next": [f"{prefix}：【循环】进入地图"]},
+                "战斗：【循环】": {"on_error": [f"{prefix}：【循环】进入地图"]},
+                # 循环移动
+                "点击自动移动": {"next": [f"{prefix}：【循环】移动中"]},
+                "战斗：回到行走画面": {"next": [f"{prefix}：【循环】移动中"]},
             }
         )
-        print("弗德莱戈的迷宫：参数重置完成")
+        print(f"{prefix}：参数重置完成")
         return True
 
 
 # 识别地图是否需要拖动箭头
 @AgentServer.custom_recognition("fdlg_drag_map_reco")
 class FDLGDrageMapReco(CustomRecognition):
-    data = FDLGDataStore.get_instance()
+    data = GlobalDataStore.get_instance()
 
     def analyze(
         self,
@@ -103,7 +96,7 @@ class FDLGDrageMapReco(CustomRecognition):
                         "pre_delay": 0,
                         "post_delay": 0,
                         "recognition": "TemplateMatch",
-                        "template": "地图左箭头.png",
+                        "template": "common\\地图左箭头.png",
                         "roi": [9, 589, 17, 21],
                     },
                 },
@@ -117,7 +110,7 @@ class FDLGDrageMapReco(CustomRecognition):
                         "pre_delay": 0,
                         "post_delay": 0,
                         "recognition": "TemplateMatch",
-                        "template": "地图右箭头.png",
+                        "template": "common\\地图右箭头.png",
                         "roi": [694, 589, 17, 21],
                     },
                 },
@@ -134,7 +127,7 @@ class FDLGDrageMapReco(CustomRecognition):
 # 执行拖动地图操作
 @AgentServer.custom_action("fdlg_drag_map")
 class FDLGDragMap(CustomAction):
-    data = FDLGDataStore.get_instance()
+    data = GlobalDataStore.get_instance()
 
     def run(
         self,
@@ -177,7 +170,7 @@ class FDLGNeedResetTarget(CustomRecognition):
 # 根据楼层选择目标
 @AgentServer.custom_action("fdlg_choose_target")
 class FDLGChooseTarget(CustomAction):
-    data = FDLGDataStore.get_instance()
+    data = GlobalDataStore.get_instance()
 
     def run(
         self,
@@ -221,8 +214,7 @@ class FDLGChooseTarget(CustomAction):
         # context.override_next(
         #     argv.node_name, [f"弗德莱戈：B{dataStore.floor}F_{dataStore.index}"]
         # )
-        self.run_find_next_chest(context, argv)
-        return True
+        return self.run_find_next_chest(context, argv)
 
     def run_find_next_chest(
         self,
@@ -247,7 +239,7 @@ class FDLGChooseTarget(CustomAction):
                     "pre_delay": 0,
                     "post_delay": 0,
                     "recognition": "TemplateMatch",
-                    "template": "宝箱.png",
+                    "template": "common\\宝箱.png",
                     "roi": roi_config.get("roi"),
                 },
             },
@@ -285,8 +277,8 @@ class FDLGChooseTarget(CustomAction):
                     "pre_delay": 0,
                     "post_delay": 0,
                     "template": self.data.floor < 3
-                    and "地图图标下楼.png"
-                    or "地图图标哈肯.png",
+                    and "common\\地图图标下楼.png"
+                    or "common\\地图图标哈肯.png",
                     "threshold": 0.9,
                     "roi": roi_config.get("roi"),
                 },
