@@ -6,13 +6,13 @@ from store import GlobalDataStore
 
 OPENER_CONFIG = {
     1: {"x": 160, "y": 930, "fear_roi": [185, 854, 72, 60]},
-    2: {"x": 370, "y": 930, "fear_roi": [421, 865, 44, 44]},
+    2: {"x": 370, "y": 930, "fear_roi": [390, 861, 76, 56]},
     3: {"x": 580, "y": 930, "fear_roi": [596, 854, 86, 60]},
     4: {"x": 160, "y": 1080, "fear_roi": [185, 994, 80, 71]},
     5: {"x": 370, "y": 1080, "fear_roi": [393, 998, 76, 68]},
     6: {"x": 580, "y": 1080, "fear_roi": [602, 1001, 76, 70]},
 }
-OPENER_ORDER = [2, 1, 6, 3, 4, 5]
+OPENER_ORDER = [2, 1, 6, 3, 5, 4]
 
 
 # 选择宝箱开启者
@@ -45,7 +45,7 @@ class ChooseOpener(CustomAction):
                         },
                     },
                 )
-                if reco_detail is not None:
+                if reco_detail.best_result is not None:
                     continue
 
             # 点击开启者位置

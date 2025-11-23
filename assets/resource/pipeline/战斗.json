@@ -31,7 +31,7 @@
     },
     "战斗：打开倍速": {
         "recognition": "TemplateMatch",
-        "template": "common\\战斗按钮倍速白.png",
+        "template": "common/战斗按钮倍速白.png",
         "roi": [
             32,
             871,
@@ -47,7 +47,23 @@
     },
     "战斗：打开自动": {
         "recognition": "TemplateMatch",
-        "template": "common\\战斗按钮自动白.png",
+        "template": "common/战斗按钮自动白新.png",
+        "roi": [
+            689,
+            871,
+            6,
+            13
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "next": [
+            "战斗：【循环】"
+        ],
+        "action": "Click"
+    },
+    "战斗：打开自动（旧）": {
+        "recognition": "TemplateMatch",
+        "template": "common/战斗按钮自动白.png",
         "roi": [
             670,
             869,

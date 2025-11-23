@@ -118,7 +118,7 @@ class FDLGDrageMapReco(CustomRecognition):
                 },
             )
 
-        if reco_detail is None:
+        if reco_detail is None or reco_detail.best_result is None:
             # 没有找到箭头，直接返回
             return CustomRecognition.AnalyzeResult(None, "")
 
@@ -246,7 +246,7 @@ class FDLGChooseTarget(CustomAction):
                 },
             },
         )
-        if reco_detail is None:
+        if reco_detail is None or reco_detail.best_result is None:
             # 该搜索下个区域了
             self.data.index += 1
             roi_config = ROI_MAP.get(self.data.floor, {}).get(self.data.index, None)
@@ -287,7 +287,7 @@ class FDLGChooseTarget(CustomAction):
             },
         )
 
-        if reco_detail is None:
+        if reco_detail is None or reco_detail.best_result is None:
             # 可能是因为闪烁等原因导致图标找不到
             return False
 

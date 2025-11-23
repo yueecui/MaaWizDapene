@@ -97,7 +97,7 @@ class LBKDrageMapReco(CustomRecognition):
                 },
             )
 
-        if reco_detail is None:
+        if reco_detail is None or reco_detail.best_result is None:
             # 没有找到箭头，直接返回
             return CustomRecognition.AnalyzeResult(None, "")
 
@@ -212,7 +212,7 @@ class LBKChooseTarget(CustomAction):
                 },
             )
 
-            if reco_detail is None:
+            if reco_detail is None or reco_detail.best_result is None:
                 # 该搜索下个区域了
                 self.data.index += 1
                 target_config = TARGET_MAP.get(self.data.index, None)

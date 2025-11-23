@@ -286,5 +286,13 @@
         ],
         "action": "Custom",
         "custom_action": "network_retry"
+    },
+    "低意志进入地下城": {
+        "recognition": "OCR",
+        "expected": [
+            "前往地下城"
+        ],
+        "roi": [395,676,188,148],
+        "action": "Click"
     }
 }

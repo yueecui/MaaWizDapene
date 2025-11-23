@@ -33,7 +33,7 @@ def click_auto_move(
     argv: CustomAction.RunArg,
 ) -> bool:
     reco_detail = content_ocr(context, "自动移动", [0, 144, 720, 823])
-    if reco_detail is None:
+    if reco_detail is None or reco_detail.best_result is None:
         return False
     if reco_detail and reco_detail.best_result:
         context.tasker.controller.post_click(
