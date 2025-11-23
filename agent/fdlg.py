@@ -10,8 +10,8 @@ class FDLGDataStore:
 
     def __init__(self):
         GlobalDataStore.get_instance().after_open_chest_entry = "弗德莱戈：打开地图"
-        self.floor = 1
-        self.index = 1
+        self.floor = 0
+        self.index = 0
 
     @staticmethod
     def get_instance():
@@ -60,8 +60,8 @@ class FDLGChooseTarget(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> bool:
-        self.data.floor = 1
-        self.data.index = 1
+        self.data.floor = 0
+        self.data.index = 0
         context.override_pipeline(
             {
                 "背包补充：补充完毕": {"next": ["弗德莱戈：执行入口"]},
@@ -87,9 +87,8 @@ class FDLGDrageMapReco(CustomRecognition):
     ) -> CustomRecognition.AnalyzeResult:
         # print("FDLGDrageMapReco analyze called")
         roi_config = ROI_MAP.get(self.data.floor, {}).get(self.data.index, None)
-        assert (
-            roi_config is not None
-        ), f"ROI not found for floor {self.data.floor}, index {self.data.index}"
+        if roi_config is None:
+            return CustomRecognition.AnalyzeResult(None, "")
 
         arrow = roi_config.get("arrow", None)
         reco_detail = None
@@ -189,35 +188,35 @@ class FDLGChooseTarget(CustomAction):
         store = GlobalDataStore.get_instance()
         store.continue_move_count = 0
 
-        image = context.tasker.controller.cached_image
-        reco_detail = context.run_recognition(
-            "弗德莱戈：OCR楼层",
-            image,
-            {
-                "弗德莱戈：OCR楼层": {
-                    "pre_delay": 0,
-                    "post_delay": 0,
-                    "recognition": "OCR",
-                    "expected": "弗德莱戈",
-                    "roi": [65, 40, 604, 56],
-                    "replace": [["R", "F"]],
+        if self.data.floor == 0 or self.data.index == 99:
+            reco_detail = context.run_recognition(
+                "弗德莱戈：OCR楼层",
+                context.tasker.controller.cached_image,
+                {
+                    "弗德莱戈：OCR楼层": {
+                        "pre_delay": 0,
+                        "post_delay": 0,
+                        "recognition": "OCR",
+                        "expected": "弗德莱戈",
+                        "roi": [65, 40, 604, 56],
+                        "replace": [["R", "F"]],
+                    },
                 },
-            },
-        )
-        if reco_detail is not None:
-            print(f"当前楼层检查: {reco_detail.best_result}")
-            if reco_detail.best_result.text == "弗德莱戈的迷宫B1F":
-                if self.data.floor < 1:
-                    self.data.floor = 1
-                    self.data.index = 1
-            elif reco_detail.best_result.text == "弗德莱戈的迷宫B2F":
-                if self.data.floor < 2:
-                    self.data.floor = 2
-                    self.data.index = 1
-            elif reco_detail.best_result.text == "弗德莱戈的迷宫B3F":
-                if self.data.floor < 3:
-                    self.data.floor = 3
-                    self.data.index = 1
+            )
+            if reco_detail is not None:
+                print(f"当前楼层检查: {reco_detail.best_result}")
+                if reco_detail.best_result.text == "弗德莱戈的迷宫B1F":
+                    if self.data.floor < 1:
+                        self.data.floor = 1
+                        self.data.index = 1
+                elif reco_detail.best_result.text == "弗德莱戈的迷宫B2F":
+                    if self.data.floor < 2:
+                        self.data.floor = 2
+                        self.data.index = 1
+                elif reco_detail.best_result.text == "弗德莱戈的迷宫B3F":
+                    if self.data.floor < 3:
+                        self.data.floor = 3
+                        self.data.index = 1
 
         # context.override_next(
         #     argv.node_name, [f"弗德莱戈：B{dataStore.floor}F_{dataStore.index}"]
