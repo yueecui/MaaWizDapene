@@ -4,6 +4,7 @@ class GlobalDataStore:
     count = 0
     floar = 0
     index = 0
+    chest_count = 0
 
     def __init__(self):
         self.floor = 0

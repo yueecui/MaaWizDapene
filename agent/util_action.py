@@ -18,6 +18,7 @@ OPENER_ORDER = [2, 1, 6, 3, 4, 5]
 # 选择宝箱开启者
 @AgentServer.custom_action("choose_opener")
 class ChooseOpener(CustomAction):
+    data = GlobalDataStore.get_instance()
 
     def run(
         self,
@@ -48,7 +49,10 @@ class ChooseOpener(CustomAction):
                     continue
 
             # 点击开启者位置
-            print(f"选择宝箱开启者: {opener}")
+            self.data.chest_count += 1
+            print(
+                f"选择宝箱开启者: {opener}；当前宝箱开启次数: {self.data.chest_count}"
+            )
             context.tasker.controller.post_click(config["x"], config["y"])
             return True
 
