@@ -1,0 +1,210 @@
+{
+    "弗德莱戈：执行入口": {
+        "action": "Custom",
+        "custom_action": "fdlg_init_data",
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：【循环】进入地图": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "弗德莱戈：打开地图",
+            "弗德莱戈：地图已打开",
+            "弗德莱戈：进入迷宫"
+        ],
+        "interrupt": [
+            "中部黄箭头",
+            "对话黄箭头"
+        ]
+    },
+    "弗德莱戈：进入迷宫": {
+        "recognition": "OCR",
+        "expected": [
+            "入口",
+            "人口"
+        ],
+        "roi": [
+            578,
+            611,
+            85,
+            44
+        ],
+        "action": "Click",
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：打开地图": {
+        "recognition": "TemplateMatch",
+        "template": "离开迷宫键.png",
+        "roi": [
+            642,
+            202,
+            60,
+            49
+        ],
+        "pre_delay": 0,
+        "action": "Click",
+        "target": [
+            605,
+            80,
+            14,
+            17
+        ],
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：地图已打开": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "recognition": "OCR",
+        "expected": "弗德莱戈",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "next": [
+            "弗德莱戈：【循环】寻找目标"
+        ]
+    },
+    "弗德莱戈：【循环】寻找目标": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "点击自动移动",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "弗德莱戈：拖动地图",
+            "弗德莱戈：选择移动目标"
+        ],
+        "on_error": [
+            "弗德莱戈：执行入口"
+        ]
+    },
+    "弗德莱戈：拖动地图": {
+        "recognition": "Custom",
+        "custom_recognition": "fdlg_drag_map_reco",
+        "pre_delay": 0,
+        "action": "Custom",
+        "custom_action": "fdlg_drag_map",
+        "next": [
+            "弗德莱戈：【循环】寻找目标"
+        ],
+        "interrupt": [
+            "网络错误重试"
+        ]
+    },
+    "弗德莱戈：选择移动目标": {
+        "recognition": "OCR",
+        "expected": [
+            "自动移动"
+        ],
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "action": "Custom",
+        "custom_action": "fdlg_choose_target",
+        "next": [
+            "弗德莱戈：【循环】寻找目标"
+        ]
+    },
+    "弗德莱戈：【循环】移动中": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "弗德莱戈：B2F检测",
+            "弗德莱戈：B3F检测",
+            "弗德莱戈：B3F归还检测",
+            "弗德莱戈：重选目标"
+        ],
+        "interrupt": [
+            "点击继续移动键"
+        ],
+        "on_error": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：B2F检测": {
+        "recognition": "TemplateMatch",
+        "template": "fdlg\\B2F检测.png",
+        "roi": [
+            598,
+            76,
+            23,
+            45
+        ],
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：B3F检测": {
+        "recognition": "TemplateMatch",
+        "template": "fdlg\\B3F检测.png",
+        "roi": [
+            575,
+            98,
+            47,
+            23
+        ],
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    },
+    "弗德莱戈：B3F归还检测": {
+        "recognition": "OCR",
+        "expected": [
+            "归还"
+        ],
+        "roi": [
+            329,
+            946,
+            67,
+            34
+        ],
+        "pre_delay": 0,
+        "post_delay": 100,
+        "action": "Click",
+        "next": [
+            "背包补充：打开"
+        ]
+    },
+    "弗德莱戈：重选目标": {
+        "recognition": "Custom",
+        "custom_recognition": "fdlg_need_reset_target",
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000,
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "战斗：【循环】": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：回到行走画面",
+            "战斗：打开倍速",
+            "战斗：打开自动",
+            "战斗：战斗中等待"
+        ]
+    },
+    "战斗：战斗中等待": {
+        "recognition": "OCR",
+        "expected": [
+            "ACTIVE"
+        ],
+        "roi": [
+            18,
+            11,
+            85,
+            24
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "next": [
+            "战斗：【循环】"
+        ]
+    },
+    "战斗：打开倍速": {
+        "recognition": "TemplateMatch",
+        "template": "战斗按钮倍速白.png",
+        "roi": [
+            32,
+            871,
+            9,
+            8
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "next": [
+            "战斗：【循环】"
+        ],
+        "action": "Click"
+    },
+    "战斗：打开自动": {
+        "recognition": "TemplateMatch",
+        "template": "战斗按钮自动白.png",
+        "roi": [
+            670,
+            869,
+            8,
+            10
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "next": [
+            "战斗：【循环】"
+        ],
+        "action": "Click"
+    },
+    "战斗：回到行走画面": {
+        "recognition": "TemplateMatch",
+        "template": "离开迷宫键.png",
+        "roi": [
+            642,
+            202,
+            60,
+            49
+        ],
+        "next": [
+            "弗德莱戈：【循环】进入地图"
+        ]
+    }
+}

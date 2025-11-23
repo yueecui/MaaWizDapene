@@ -1,0 +1,177 @@
+{
+    "对话黄箭头": {
+        "recognition": "TemplateMatch",
+        "template": "对话黄箭头.png",
+        "roi": [
+            620,
+            1148,
+            90,
+            86
+        ],
+        "pre_delay": 200,
+        "action": "Click"
+    },
+    "中部黄箭头": {
+        "recognition": "TemplateMatch",
+        "template": "中部黄箭头.png",
+        "roi": [
+            657,
+            793,
+            31,
+            34
+        ],
+        "action": "Click"
+    },
+    "点击自动移动": {
+        "recognition": "OCR",
+        "expected": [
+            "自动移动"
+        ],
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click"
+    },
+    "移动中": {
+        "pre_delay": 0,
+        "post_delay": 200,
+        "next": [
+            "宝箱：选择打开"
+        ],
+        "interrupt": [
+            "点击继续移动键"
+        ]
+    },
+    "点击继续移动键": {
+        "recognition": "TemplateMatch",
+        "template": "继续移动键.png",
+        "roi": [
+            584,
+            204,
+            47,
+            48
+        ],
+        "action": "Custom",
+        "custom_action": "continue_move",
+        "post_delay": 1000
+    },
+    "移除地图左箭头": {
+        "recognition": "TemplateMatch",
+        "template": "地图左箭头.png",
+        "roi": [
+            9,
+            589,
+            17,
+            21
+        ],
+        "action": "Swipe",
+        "begin": [
+            325,
+            950,
+            0,
+            0
+        ],
+        "end": [
+            375,
+            950,
+            0,
+            0
+        ]
+    },
+    "移除地图右箭头": {
+        "recognition": "TemplateMatch",
+        "template": "地图右箭头.png",
+        "roi": [
+            696,
+            591,
+            17,
+            19
+        ],
+        "action": "Swipe",
+        "begin": [
+            375,
+            950,
+            0,
+            0
+        ],
+        "end": [
+            325,
+            950,
+            0,
+            0
+        ]
+    },
+    "背包补充：打开": {
+        "recognition": "TemplateMatch",
+        "template": "图标背包补充.png",
+        "roi": [
+            376,
+            919,
+            25,
+            34
+        ],
+        "action": "Click",
+        "next": [
+            "背包补充：点击补充"
+        ]
+    },
+    "背包补充：点击补充": {
+        "recognition": "OCR",
+        "expected": [
+            "补充"
+        ],
+        "roi": [
+            449,
+            1131,
+            73,
+            42
+        ],
+        "post_delay": 1000,
+        "action": "Click",
+        "next": [
+            "背包补充：等待循环"
+        ]
+    },
+    "背包补充：等待循环": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "背包补充：补充完毕"
+        ],
+        "interrupt": [
+            "中部黄箭头"
+        ]
+    },
+    "背包补充：补充完毕": {
+        "recognition": "OCR",
+        "expected": [
+            "入口",
+            "人口"
+        ],
+        "roi": [
+            578,
+            611,
+            85,
+            44
+        ]
+    },
+    "网络错误重试": {
+        "recognition": "OCR",
+        "expected": [
+            "重试"
+        ],
+        "roi": [
+            321,
+            692,
+            367,
+            53
+        ],
+        "action": "Custom",
+        "custom_action": "network_retry"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "测试1": {
+        "next": [
+            "测试3"
+        ]
+    },
+    "测试3": {
+        "next": [
+            "测试2"
+        ]
+    },
+    "测试2": {
+        "recognition": "DirectHit",
+        "custom_recognition": "my_reco_333",
+        "action": "Custom",
+        "custom_action": "my_action_111"
+    }
+}

@@ -1,0 +1,97 @@
+{
+    "宝箱：循环": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "宝箱：选择开启者",
+            "宝箱：解锁中"
+        ],
+        "interrupt": [
+            "对话黄箭头"
+        ]
+    },
+    "宝箱：选择打开": {
+        "recognition": "OCR",
+        "expected": [
+            "打开"
+        ],
+        "roi": [
+            292,
+            984,
+            132,
+            49
+        ],
+        "pre_delay": 0,
+        "action": "Click",
+        "next": [
+            "宝箱：循环"
+        ]
+    },
+    "宝箱：选择开启者": {
+        "recognition": "OCR",
+        "expected": [
+            "由谁打开"
+        ],
+        "roi": [
+            277,
+            732,
+            152,
+            55
+        ],
+        "pre_delay": 0,
+        "action": "Custom",
+        "custom_action": "choose_opener",
+        "next": [
+            "宝箱：循环"
+        ]
+    },
+    "宝箱：解锁中": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择开启者",
+            "宝箱：点击解除",
+            "宝箱：重新打开地图"
+        ],
+        "interrupt": [
+            "对话黄箭头"
+        ]
+    },
+    "宝箱：点击解除": {
+        "pre_delay": 0,
+        "post_delay": 400,
+        "recognition": "OCR",
+        "expected": [
+            "解除"
+        ],
+        "roi": [
+            323,
+            847,
+            72,
+            39
+        ],
+        "action": "Click",
+        "next": [
+            "宝箱：解锁中"
+        ]
+    },
+    "宝箱：重新打开地图": {
+        "recognition": "TemplateMatch",
+        "template": "继续移动键.png",
+        "roi": [
+            584,
+            204,
+            47,
+            48
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "弗德莱戈：打开地图"
+        ]
+    }
+}

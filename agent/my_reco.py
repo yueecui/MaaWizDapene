@@ -35,3 +35,15 @@ class MyRecongition(CustomRecognition):
         return CustomRecognition.AnalyzeResult(
             box=(0, 0, 100, 100), detail="Hello World!"
         )
+
+
+@AgentServer.custom_recognition("my_reco_333")
+class MyRecongition(CustomRecognition):
+
+    def analyze(
+        self,
+        context: Context,
+        argv: CustomRecognition.AnalyzeArg,
+    ) -> CustomRecognition.AnalyzeResult:
+
+        return CustomRecognition.AnalyzeResult(None, detail="Hello World!")

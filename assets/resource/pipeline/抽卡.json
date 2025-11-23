@@ -1,0 +1,110 @@
+{
+    "开始抽卡": {
+        "next": [
+            "进入荒屋",
+            "打开逆转右手",
+            "选择杂物"
+        ]
+    },
+    "进入荒屋": {
+        "recognition": "OCR",
+        "expected": [
+            "荒屋"
+        ],
+        "roi": [
+            0,
+            334,
+            720,
+            410
+        ],
+        "action": "Click",
+        "next": [
+            "打开逆转右手"
+        ]
+    },
+    "打开逆转右手": {
+        "recognition": "OCR",
+        "expected": "逆转右手",
+        "roi": [
+            417,
+            457,
+            255,
+            60
+        ],
+        "action": "Click",
+        "next": [
+            "选择杂物"
+        ]
+    },
+    "选择杂物": {
+        "recognition": "OCR",
+        "expected": [
+            "杂物"
+        ],
+        "roi": [
+            28,
+            1023,
+            664,
+            94
+        ],
+        "action": "Click",
+        "next": [
+            "逆转右手"
+        ]
+    },
+    "抽卡循环": {
+        "next": [
+            "逆转右手",
+            "跳过动画",
+            "再来一次"
+        ]
+    },
+    "逆转右手": {
+        "recognition": "TemplateMatch",
+        "template": "逆转右手.png",
+        "roi": [
+            308,
+            711,
+            83,
+            83
+        ],
+        "action": "Click",
+        "next": [
+            "抽卡循环"
+        ],
+        "pre_delay": 100,
+        "post_delay": 0
+    },
+    "跳过动画": {
+        "recognition": "OCR",
+        "expected": [
+            "SKIP"
+        ],
+        "roi": [
+            588,
+            1211,
+            96,
+            34
+        ],
+        "action": "Click",
+        "next": [
+            "抽卡循环"
+        ]
+    },
+    "再来一次": {
+        "recognition": "OCR",
+        "expected": [
+            "再来一次"
+        ],
+        "roi": [
+            257,
+            1197,
+            205,
+            72
+        ],
+        "action": "Click",
+        "next": [
+            "抽卡循环"
+        ]
+    }
+}

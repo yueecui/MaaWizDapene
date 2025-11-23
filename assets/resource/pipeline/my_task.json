@@ -1,11 +1,15 @@
 {
-    "MyTask1": {},
-    "MyTask2": {},
-    "MyTask3": {},
-    "MyTask4": {
-        "recognition": "Custom",
-        "custom_recognition": "my_reco_222",
-        "action": "Custom",
-        "custom_action": "my_action_111"
+    "MyTask1": {
+        "recognition": "OCR",
+        "action": "Click",
+        "expected": [
+            "荒屋"
+        ],
+        "roi": [
+            0,
+            334,
+            720,
+            410
+        ]
     }
 }

@@ -12,6 +12,14 @@ class MyCustomAction(CustomAction):
         argv: CustomAction.RunArg,
     ) -> bool:
 
-        print("my_action_111 is running!")
+        node = context.get_task_job()
+        # print(f"当前任务节点: {node.job_id}")
+        # print(f"当前任务节点: {node}")
+
+        result = context.tasker.get_task_detail(node.job_id)
+        last = result.nodes[-1] if result.nodes else None
+        print(f"当前任务节点数量: {len(result.nodes)}")
+        if last is not None:
+            context.override_next(argv.node_name, [last.name])
 
         return True

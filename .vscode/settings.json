@@ -30,7 +30,8 @@
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
-        "editor.indentSize": "tabSize"
+        "editor.indentSize": "tabSize",
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
