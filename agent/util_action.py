@@ -4,6 +4,13 @@ from maa.context import Context
 from store import GlobalDataStore
 
 
+OPENER_CONFIG = {
+    1: {"x": 160, "y": 930},
+    2: {"x": 370, "y": 930, "fear_roi": [421, 865, 44, 44]},
+}
+OPENER_ORDER = [2, 1]
+
+
 # 选择宝箱开启者
 @AgentServer.custom_action("choose_opener")
 class ChooseOpener(CustomAction):
@@ -13,9 +20,35 @@ class ChooseOpener(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> bool:
-        print("选择宝箱开启者")
-        context.tasker.controller.post_click(370, 930)
+        for opener in OPENER_ORDER:
+            config = OPENER_CONFIG.get(opener, {})
+            if not config:
+                continue
 
+            # 检查是否有恐惧状态
+            if "fear_roi" in config:
+                reco_detail = context.run_recognition(
+                    "FDLG_CHECK_OPENER_FEAR",
+                    context.tasker.controller.cached_image,
+                    {
+                        "FDLG_CHECK_OPENER_FEAR": {
+                            "pre_delay": 0,
+                            "post_delay": 0,
+                            "recognition": "TemplateMatch",
+                            "template": "图标宝箱恐惧.png",
+                            "roi": config["fear_roi"],
+                        },
+                    },
+                )
+                if reco_detail is not None:
+                    continue
+
+            # 点击开启者位置
+            print(f"选择宝箱开启者: {opener}")
+            context.tasker.controller.post_click(config["x"], config["y"])
+            return True
+
+        print("选择宝箱开启者失败，未找到合适的开启者")
         return True
 
 

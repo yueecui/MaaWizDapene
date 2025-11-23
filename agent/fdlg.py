@@ -68,6 +68,7 @@ class FDLGChooseTarget(CustomAction):
                 "宝箱：重新打开地图": {"next": ["弗德莱戈：【循环】进入地图"]},
                 "点击自动移动": {"next": ["弗德莱戈：【循环】移动中"]},
                 "战斗：回到行走画面": {"next": ["弗德莱戈：【循环】移动中"]},
+                "重启游戏：等待启动画面": {"next": ["弗德莱戈：执行入口（重启版）"]},
             }
         )
         print("弗德莱戈的迷宫：参数重置完成")
@@ -167,7 +168,7 @@ class FDLGNeedResetTarget(CustomRecognition):
         argv: CustomRecognition.AnalyzeArg,
     ) -> CustomRecognition.AnalyzeResult:
         store = GlobalDataStore.get_instance()
-        if store.continue_move_count >= 10:
+        if store.continue_move_count >= 20:
             print("FDLGNeedResetTarget: 超过预设次数，重新选择目标")
             return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
         else:
@@ -199,6 +200,7 @@ class FDLGChooseTarget(CustomAction):
                     "recognition": "OCR",
                     "expected": "弗德莱戈",
                     "roi": [65, 40, 604, 56],
+                    "replace": [["R", "F"]],
                 },
             },
         )

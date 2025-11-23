@@ -22,6 +22,17 @@
         ],
         "action": "Click"
     },
+    "随便点一下": {
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "action": "Click",
+        "target": [
+            360,
+            100,
+            10,
+            10
+        ]
+    },
     "点击自动移动": {
         "recognition": "OCR",
         "expected": [
@@ -117,6 +128,7 @@
         ],
         "action": "Click",
         "next": [
+            "判断报错需要重启",
             "背包补充：点击补充"
         ]
     },

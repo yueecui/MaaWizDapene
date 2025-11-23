@@ -1,0 +1,48 @@
+{
+    "判断报错需要重启": {
+        "recognition": "OCR",
+        "expected": [
+            "返回标题界面"
+        ],
+        "roi": [
+            262,
+            690,
+            193,
+            56
+        ],
+        "next": [
+            "重启游戏：关闭游戏"
+        ]
+    },
+    "重启游戏：关闭游戏": {
+        "action": "StopApp",
+        "package": "jp.co.drecom.wizardry.daphne",
+        "next": [
+            "重启游戏：启动游戏"
+        ]
+    },
+    "重启游戏：启动游戏": {
+        "recognition": "TemplateMatch",
+        "template": "游戏APP图标.png",
+        "action": "StartApp",
+        "package": "jp.co.drecom.wizardry.daphne",
+        "next": [
+            "重启游戏：等待启动画面"
+        ]
+    },
+    "重启游戏：等待启动画面": {
+        "recognition": "OCR",
+        "expected": [
+            "请注意"
+        ],
+        "roi": [
+            309,
+            393,
+            104,
+            49
+        ],
+        "next": [
+            "弗德莱戈：执行入口"
+        ]
+    }
+}
