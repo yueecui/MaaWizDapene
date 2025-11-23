@@ -30,7 +30,7 @@ class EarthCaveInitData(CustomAction):
         context.override_pipeline(
             {
                 # 执行入口
-                "背包补充：等待循环": {"next": [f"{prefix}：背包补充完毕"]},
+                "背包补充：【循环】补充完毕": {"next": [f"{prefix}：背包补充完毕"]},
                 # 重启游戏
                 "重启游戏：等待启动画面": {"next": [f"{prefix}：执行入口（重启版）"]},
                 # 循环进入地图
@@ -56,7 +56,7 @@ class EarthCaveNeedResetTarget(CustomRecognition):
         argv: CustomRecognition.AnalyzeArg,
     ) -> CustomRecognition.AnalyzeResult:
         store = GlobalDataStore.get_instance()
-        if store.continue_move_count >= 10:
+        if store.continue_move_count >= 15:
             print("EarthCaveNeedResetTarget: 超过预设次数，重新选择目标")
             return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
         else:
@@ -88,8 +88,8 @@ class EarthCaveNeedBagSupplement(CustomRecognition):
         argv: CustomRecognition.AnalyzeArg,
     ) -> CustomRecognition.AnalyzeResult:
         store = GlobalDataStore.get_instance()
-        if (store.count - 1) > 0 and (store.count - 1) % 10 == 0:
-            context.override_next(argv.node_name, ["背包补充：打开"])
+        if (store.count - 1) > 0 and (store.count - 1) % 30 == 0:
+            context.override_next(argv.node_name, ["背包补充：【循环】打开前"])
             return CustomRecognition.AnalyzeResult(box=(0, 0, 100, 100), detail="")
         else:
             context.override_next(argv.node_name, ["土之魔窟：执行入口"])

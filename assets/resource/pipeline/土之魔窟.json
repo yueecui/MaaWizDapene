@@ -150,7 +150,19 @@
             "点击继续移动键"
         ],
         "on_error": [
-            "土之魔窟：【循环】进入地图"
+            "土之魔窟：等待遇敌超时"
+        ]
+    },
+    "土之魔窟：等待遇敌超时": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "action": "Custom",
+        "custom_action": "earth_cave_mod_index",
+        "custom_action_param": {
+            "index": 99
+        },
+        "next": [
+            "土之魔窟：【循环】移动中"
         ]
     },
     "土之魔窟：重选目标": {
@@ -158,16 +170,13 @@
         "custom_recognition": "earth_cave_need_reset_target",
         "pre_delay": 0,
         "post_delay": 200,
-        "action": "Click",
-        "target": [
-            386,
-            576,
-            9,
-            13
-        ],
-        "post_wait_freezes": 1000,
+        "action": "Custom",
+        "custom_action": "earth_cave_mod_index",
+        "custom_action_param": {
+            "index": 99
+        },
         "next": [
-            "土之魔窟：执行入口"
+            "土之魔窟：【循环】移动中"
         ]
     },
     "土之魔窟：判断离开迷宫": {
@@ -232,7 +241,7 @@
         "recognition": "Custom",
         "custom_recognition": "earth_cave_need_bag_supplement",
         "next": [
-            "背包补充：打开"
+            "背包补充：【循环】打开前"
         ]
     },
     "土之魔窟：背包补充完毕": {
