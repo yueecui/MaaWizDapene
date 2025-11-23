@@ -8,6 +8,7 @@ import my_reco
 
 import util_action
 import fdlg
+import lbk
 import light_cave
 import earth_cave
 

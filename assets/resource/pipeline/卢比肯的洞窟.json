@@ -1,0 +1,274 @@
+{
+    "卢比肯：执行入口": {
+        "action": "Custom",
+        "custom_action": "lbk_init_data",
+        "next": [
+            "卢比肯：【循环】进入地图"
+        ]
+    },
+    "卢比肯：【循环】进入地图": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "判断报错需要重启",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "打开地图",
+            "卢比肯：地图已打开",
+            "卢比肯：进入迷宫"
+        ],
+        "interrupt": [
+            "中部黄箭头",
+            "对话黄箭头"
+        ],
+        "on_error": [
+            "重启游戏：关闭游戏"
+        ]
+    },
+    "卢比肯：执行入口（重启版）": {
+        "action": "Custom",
+        "custom_action": "lbk_init_data",
+        "next": [
+            "卢比肯：【循环】进入地图（重启版）"
+        ]
+    },
+    "卢比肯：【循环】进入地图（重启版）": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "打开地图",
+            "卢比肯：地图已打开",
+            "卢比肯：进入迷宫"
+        ],
+        "interrupt": [
+            "中部黄箭头",
+            "对话黄箭头",
+            "随便点一下"
+        ]
+    },
+    "卢比肯：进入迷宫": {
+        "recognition": "OCR",
+        "expected": [
+            "比肯的洞窟"
+        ],
+        "roi": [
+            31,
+            148,
+            351,
+            286
+        ],
+        "action": "Click",
+        "next": [
+            "卢比肯：【循环】进入地图"
+        ]
+    },
+    "卢比肯：地图已打开": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "recognition": "OCR",
+        "expected": "比肯的洞窟",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "next": [
+            "卢比肯：【循环】寻找目标"
+        ]
+    },
+    "卢比肯：【循环】寻找目标": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "点击自动移动",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "卢比肯：判断离开迷宫",
+            "卢比肯：拖动地图",
+            "卢比肯：选择移动目标"
+        ],
+        "on_error": [
+            "卢比肯：执行入口"
+        ]
+    },
+    "卢比肯：拖动地图": {
+        "recognition": "Custom",
+        "custom_recognition": "lbk_drag_map_reco",
+        "pre_delay": 0,
+        "action": "Custom",
+        "custom_action": "lbk_drag_map",
+        "next": [
+            "卢比肯：【循环】寻找目标"
+        ],
+        "interrupt": [
+            "网络错误重试"
+        ]
+    },
+    "卢比肯：选择移动目标": {
+        "recognition": "OCR",
+        "expected": [
+            "自动移动"
+        ],
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "action": "Custom",
+        "custom_action": "lbk_choose_target",
+        "next": [
+            "卢比肯：【循环】寻找目标"
+        ],
+        "on_error": [
+            "卢比肯：执行入口"
+        ]
+    },
+    "卢比肯：【循环】移动中": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "卢比肯：判断离开迷宫",
+            "卢比肯：无法找到路线",
+            "卢比肯：重选目标"
+        ],
+        "interrupt": [
+            "点击继续移动键"
+        ],
+        "on_error": [
+            "卢比肯：【循环】进入地图"
+        ]
+    },
+    "卢比肯：判断离开迷宫": {
+        "recognition": "Custom",
+        "custom_recognition": "lbk_need_escape_dungeon",
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "卢比肯：【循环】离开迷宫"
+        ]
+    },
+    "卢比肯：【循环】离开迷宫": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "卢比肯：关闭地图",
+            "卢比肯：判断已离开迷宫"
+        ],
+        "interrupt": [
+            "点击离开迷宫键"
+        ],
+        "on_error": [
+            "卢比肯：【循环】进入地图"
+        ]
+    },
+    "卢比肯：关闭地图": {
+        "recognition": "OCR",
+        "expected": "比肯的洞窟",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "pre_delay": 0,
+        "post_delay": 1000,
+        "action": "Key",
+        "key": 4,
+        "next": [
+            "卢比肯：【循环】离开迷宫"
+        ]
+    },
+    "卢比肯：判断已离开迷宫": {
+        "recognition": "OCR",
+        "expected": [
+            "比肯的洞窟"
+        ],
+        "roi": [
+            31,
+            148,
+            351,
+            286
+        ],
+        "action": "Click",
+        "next": [
+            "卢比肯：执行入口"
+        ]
+    },
+    "卢比肯：背包补充完毕": {
+        "recognition": "OCR",
+        "expected": [
+            "入口",
+            "人口"
+        ],
+        "roi": [
+            578,
+            611,
+            85,
+            44
+        ],
+        "next": [
+            "卢比肯：执行入口"
+        ]
+    },
+    "卢比肯：无法找到路线": {
+        "recognition": "OCR",
+        "expected": [
+            "找到前往",
+            "目的地"
+        ],
+        "roi": [
+            36,
+            487,
+            609,
+            363
+        ],
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000,
+        "next": [
+            "卢比肯：执行入口"
+        ]
+    },
+    "卢比肯：重选目标": {
+        "recognition": "Custom",
+        "custom_recognition": "lbk_need_reset_target",
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000,
+        "next": [
+            "卢比肯：执行入口"
+        ]
+    }
+}
