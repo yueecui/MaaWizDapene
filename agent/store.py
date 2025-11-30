@@ -5,6 +5,7 @@ class GlobalDataStore:
     floar = 0
     index = 0
     chest_count = 0
+    gohome = False
 
     def __init__(self):
         self.floor = 0

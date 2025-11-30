@@ -7,25 +7,33 @@
             "宝箱：选择打开",
             "战斗：战斗中等待",
             "宝箱：选择开启者",
-            "宝箱：解锁中"
-        ],
-        "interrupt": [
-            "对话黄箭头"
+            "宝箱：解锁中",
+            "[JumpBack]对话黄箭头"
         ]
     },
     "宝箱：选择打开": {
         "recognition": "OCR",
         "expected": [
-            "打开"
+            "打开",
+            "打力"
         ],
         "roi": [
-            292,
-            984,
-            132,
-            49
+            302,
+            982,
+            110,
+            51
         ],
-        "pre_delay": 0,
+        "next": [
+            "宝箱：执行打开"
+        ]
+    },
+    "宝箱：执行打开": {
         "action": "Click",
+        "target": [
+            320,
+            1000
+        ],
+        "post_delay": 500,
         "next": [
             "宝箱：循环"
         ]
@@ -42,6 +50,7 @@
             55
         ],
         "pre_delay": 0,
+        "post_delay": 500,
         "action": "Custom",
         "custom_action": "choose_opener",
         "next": [
@@ -55,10 +64,9 @@
             "网络错误重试",
             "宝箱：选择开启者",
             "宝箱：点击解除",
-            "宝箱：重新打开地图"
-        ],
-        "interrupt": [
-            "对话黄箭头"
+            "宝箱：重新打开地图",
+            "[JumpBack]对话黄箭头",
+            "[JumpBack]宝箱：意外打开角色界面"
         ]
     },
     "宝箱：点击解除": {
@@ -90,5 +98,18 @@
         ],
         "pre_delay": 0,
         "post_delay": 0
+    },
+    "宝箱：意外打开角色界面": {
+        "recognition": "TemplateMatch",
+        "template": "common/角色界面关闭按钮.png",
+        "roi": [
+            39,
+            1179,
+            30,
+            34
+        ],
+        "pre_delay": 100,
+        "post_delay": 1000,
+        "action": "Click"
     }
 }

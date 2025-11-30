@@ -1,0 +1,128 @@
+{
+    "恢复：判断是否需要恢复": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "common/状态图标剧毒.png",
+            "common/状态图标毒.png"
+        ],
+        "threshold": 0.9,
+        "roi": [
+            13,
+            979,
+            687,
+            222
+        ],
+        "next": [
+            "恢复：【循环】执行恢复"
+        ]
+    },
+    "恢复：【循环】执行恢复": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "判断报错需要重启",
+            "恢复：打开界面",
+            "恢复：点击按钮",
+            "恢复：点击恢复",
+            "[JumpBack]中部黄箭头",
+            "[JumpBack]对话黄箭头"
+        ]
+    },
+    "恢复：打开界面": {
+        "recognition": "TemplateMatch",
+        "template": "common/继续移动键.png",
+        "roi": [
+            584,
+            204,
+            47,
+            48
+        ],
+        "action": "Click",
+        "target": [
+            325,
+            1163,
+            82,
+            67
+        ],
+        "next": [
+            "恢复：【循环】执行恢复"
+        ]
+    },
+    "恢复：点击按钮": {
+        "recognition": "TemplateMatch",
+        "template": "common/角色界面关闭按钮.png",
+        "roi": [
+            39,
+            1179,
+            30,
+            34
+        ],
+        "action": "Click",
+        "target": [
+            653,
+            660,
+            37,
+            36
+        ],
+        "next": [
+            "恢复：【循环】执行恢复"
+        ]
+    },
+    "恢复：点击恢复": {
+        "recognition": "OCR",
+        "expected": [
+            "恢复"
+        ],
+        "roi": [
+            450,
+            962,
+            69,
+            39
+        ],
+        "action": "Click",
+        "next": [
+            "恢复：【循环】退出界面"
+        ]
+    },
+    "恢复：【循环】退出界面": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "判断报错需要重启",
+            "恢复：点击恢复",
+            "恢复：关闭界面",
+            "恢复：回到主循环",
+            "[JumpBack]中部黄箭头",
+            "[JumpBack]对话黄箭头"
+        ]
+    },
+    "恢复：关闭界面": {
+        "recognition": "TemplateMatch",
+        "template": "common/角色界面关闭按钮.png",
+        "roi": [
+            39,
+            1179,
+            30,
+            34
+        ],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "恢复：【循环】退出界面"
+        ]
+    },
+    "恢复：回到主循环": {
+        "recognition": "TemplateMatch",
+        "template": "common/继续移动键.png",
+        "roi": [
+            584,
+            204,
+            47,
+            48
+        ],
+        "pre_delay": 0,
+        "post_delay": 0
+    }
+}

@@ -64,8 +64,6 @@
             720,
             823
         ],
-        "pre_delay": 0,
-        "post_delay": 200,
         "action": "Click"
     },
     "点击自动移动（识图）": {
@@ -78,8 +76,6 @@
             823
         ],
         "threshold": 0.9,
-        "pre_delay": 0,
-        "post_delay": 200,
         "action": "Click"
     },
     "点击继续移动键": {
@@ -268,10 +264,7 @@
     "背包补充：【循环】补充完毕": {
         "pre_delay": 0,
         "post_delay": 0,
-        "next": [],
-        "interrupt": [
-            "中部黄箭头"
-        ]
+        "next": ["[JumpBack]中部黄箭头"]
     },
     "网络错误重试": {
         "recognition": "OCR",

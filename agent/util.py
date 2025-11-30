@@ -40,3 +40,32 @@ def click_auto_move(
             reco_detail.best_result.box[0], reco_detail.best_result.box[1]
         ).wait()
         return True
+
+
+def update_pipeline(
+    context: Context,
+    node_name: str,
+    update_data: dict,
+):
+    node_data = context.get_node_data(node_name)
+    if "next" in update_data:
+        new_next = []
+        for next_node_name in update_data["next"]:
+            new_next.append(
+                {"anchor": False, "jump_back": False, "name": next_node_name}
+            )
+        new_next.extend(node_data.get("next", []))
+
+        node_data["next"] = new_next
+
+    if "on_error" in update_data:
+        new_on_error = []
+        for error_node_name in update_data["on_error"]:
+            new_on_error.append(
+                {"anchor": False, "jump_back": False, "name": error_node_name}
+            )
+        new_on_error.extend(node_data.get("on_error", []))
+
+        node_data["on_error"] = new_on_error
+
+    context.override_pipeline({node_name: node_data})

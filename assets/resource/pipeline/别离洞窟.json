@@ -1,0 +1,297 @@
+{
+    "别离洞窟：执行入口": {
+        "action": "Custom",
+        "custom_action": "bieli_init_data",
+        "next": [
+            "别离洞窟：【循环】进入地图"
+        ],
+        "on_error": [
+            "别离洞窟：执行入口"
+        ]
+    },
+    "别离洞窟：【循环】进入地图": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "判断报错需要重启",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "恢复：判断是否需要恢复",
+            "打开地图",
+            "别离洞窟：地图已打开",
+            "别离洞窟：进入郊外",
+            "旅馆：检查是否需要",
+            "别离洞窟：进入迷宫1",
+            "别离洞窟：进入迷宫2",
+            "别离洞窟：哈肯归还检测",
+            "[JumpBack]宝箱：意外打开角色界面",
+            "[JumpBack]低意志进入地下城",
+            "[JumpBack]中部黄箭头",
+            "[JumpBack]对话黄箭头"
+        ],
+        "on_error": [
+            "重启游戏：关闭游戏"
+        ]
+    },
+    "别离洞窟：执行入口（重启版）": {
+        "action": "Custom",
+        "custom_action": "bieli_init_data",
+        "next": [
+            "别离洞窟：【循环】进入地图（重启版）"
+        ]
+    },
+    "别离洞窟：【循环】进入地图（重启版）": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "宝箱：选择开启者",
+            "战斗：战斗中等待",
+            "打开地图",
+            "别离洞窟：地图已打开",
+            "别离洞窟：进入郊外",
+            "别离洞窟：进入迷宫1",
+            "别离洞窟：进入迷宫2",
+            "[JumpBack]中部黄箭头",
+            "[JumpBack]对话黄箭头",
+            "[JumpBack]随便点一下"
+        ]
+    },
+    "别离洞窟：进入郊外": {
+        "recognition": "TemplateMatch",
+        "template": "common/王都郊外图标.png",
+        "roi": [
+            608,
+            634,
+            42,
+            46
+        ],
+        "action": "Click",
+        "next": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：进入迷宫1": {
+        "recognition": "OCR",
+        "expected": [
+            "别离洞窟"
+        ],
+        "roi": [
+            467,
+            688,
+            114,
+            33
+        ],
+        "action": "Click",
+        "next": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：进入迷宫2": {
+        "recognition": "OCR",
+        "expected": [
+            "入口",
+            "人口"
+        ],
+        "roi": [
+            542,
+            614,
+            74,
+            40
+        ],
+        "action": "Click",
+        "next": [
+            "别离洞窟：重置回家标记"
+        ]
+    },
+    "别离洞窟：重置回家标记": {
+        "action": "Custom",
+        "custom_action": "bieli_reset_gohome",
+        "next": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：地图已打开": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "recognition": "OCR",
+        "expected": "别离",
+        "roi": [
+            65,
+            40,
+            604,
+            56
+        ],
+        "next": [
+            "别离洞窟：【循环】寻找目标"
+        ]
+    },
+    "别离洞窟：【循环】寻找目标": {
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "网络错误重试",
+            "点击自动移动（识图）",
+            "点击自动移动",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "别离洞窟：拖动地图",
+            "别离洞窟：选择移动目标"
+        ],
+        "on_error": [
+            "别离洞窟：执行入口"
+        ]
+    },
+    "别离洞窟：拖动地图": {
+        "recognition": "Custom",
+        "custom_recognition": "bieli_drag_map_reco",
+        "pre_delay": 0,
+        "action": "Custom",
+        "custom_action": "bieli_drag_map",
+        "next": [
+            "别离洞窟：【循环】寻找目标",
+            "[JumpBack]网络错误重试"
+        ]
+    },
+    "别离洞窟：选择移动目标": {
+        "recognition": "OCR",
+        "expected": [
+            "自动移动"
+        ],
+        "roi": [
+            0,
+            144,
+            720,
+            823
+        ],
+        "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "action": "Custom",
+        "custom_action": "bieli_choose_target",
+        "next": [
+            "别离洞窟：【循环】寻找目标"
+        ],
+        "on_error": [
+            "别离洞窟：执行入口"
+        ]
+    },
+    "别离洞窟：【循环】移动中": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "别离洞窟：判断是否需要离开",
+            "别离洞窟：楼层起始检测",
+            "别离洞窟：哈肯归还检测",
+            "无法找到路线",
+            "别离洞窟：重选目标",
+            "[JumpBack]点击继续移动键"
+        ],
+        "on_error": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：判断是否需要离开": {
+        "recognition": "Custom",
+        "custom_recognition": "need_go_home",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": [
+            "别离洞窟：【循环】离开中"
+        ]
+    },
+    "别离洞窟：【循环】离开中": {
+        "pre_delay": 0,
+        "post_delay": 100,
+        "next": [
+            "网络错误重试",
+            "宝箱：选择打开",
+            "战斗：战斗中等待",
+            "别离洞窟：楼层起始检测",
+            "别离洞窟：哈肯归还检测",
+            "[JumpBack]点击离开迷宫键"
+        ],
+        "on_error": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：楼层起始检测": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "bieli/B2F从B1F下来检测.png",
+            "bieli/B2F从B3F上来检测.png",
+            "bieli/B3F从B2F下来检测.png"
+        ],
+        "roi": [
+            575,
+            73,
+            70,
+            70
+        ],
+        "pre_delay": 0,
+        "post_delay": 500,
+        "next": [
+            "别离洞窟：【循环】进入地图"
+        ]
+    },
+    "别离洞窟：哈肯归还检测": {
+        "recognition": "OCR",
+        "expected": [
+            "归还"
+        ],
+        "roi": [
+            329,
+            946,
+            67,
+            34
+        ],
+        "pre_delay": 0,
+        "post_delay": 100,
+        "action": "Click",
+        "next": [
+            "网络错误重试",
+            "背包补充：【循环】打开前"
+        ],
+        "on_error": [
+            "别离洞窟：执行入口"
+        ]
+    },
+    "别离洞窟：背包补充完毕": {
+        "recognition": "OCR",
+        "expected": [
+            "别离洞窟"
+        ],
+        "roi": [
+            467,
+            688,
+            114,
+            33
+        ],
+        "next": [
+            "别离洞窟：执行入口"
+        ]
+    },
+    "别离洞窟：重选目标": {
+        "recognition": "Custom",
+        "custom_recognition": "bieli_need_reset_target",
+        "pre_delay": 0,
+        "post_delay": 200,
+        "action": "Click",
+        "target": [
+            386,
+            576,
+            9,
+            13
+        ],
+        "post_wait_freezes": 1000,
+        "next": [
+            "别离洞窟：执行入口"
+        ]
+    }
+}
